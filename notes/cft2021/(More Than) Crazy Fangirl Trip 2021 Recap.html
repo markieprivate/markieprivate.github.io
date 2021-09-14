@@ -1,0 +1,651 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+
+<style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
+.mac-os-11 { --title-bar-height:28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-require-zoom-fix { height: auto; margin-top: 16px; margin-bottom: 16px; }
+.md-require-zoom-fix foreignobject { font-size: var(--mermaid-font-zoom); }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex:2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
+
+
+html {
+	font-size: 19px;
+}
+
+html, body {
+	margin: auto;
+	background: #fefefe;
+	-webkit-font-smoothing: antialiased;
+}
+body {
+	font-family: "Vollkorn", Palatino, Times;
+	color: #333;
+	line-height: 1.4;
+	text-align: justify;
+}
+
+#write {
+	max-width: 960px;
+	margin: 0 auto;
+	margin-bottom: 2em;
+	line-height: 1.53;
+	padding-top: 40px;
+}
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1100px;
+	}
+}
+
+@media print {
+	html {
+		font-size: 13px;
+	}
+}
+
+/* Typography
+-------------------------------------------------------- */
+
+#write>h1:first-child,
+h1 {
+	margin-top: 1.6em;
+	font-weight: normal;
+}
+
+h1 {
+	font-size:3em;
+}
+
+h2 {
+	margin-top:2em;
+	font-weight: normal;
+}
+
+h3 {
+	font-weight: normal;
+	font-style: italic;
+	margin-top: 3em;
+}
+
+h1, 
+h2, 
+h3{
+	text-align: center;
+}
+
+h2:after{
+	border-bottom: 1px solid #2f2f2f;
+    content: '';
+    width: 100px;
+    display: block;
+    margin: 0 auto;
+    height: 1px;
+}
+
+h1+h2, h2+h3 {
+	margin-top: 0.83em;
+}
+
+p,
+.mathjax-block {
+	margin-top: 0;
+	-webkit-hypens: auto;
+	-moz-hypens: auto;
+	hyphens: auto;
+}
+ul {
+	list-style: square;
+	padding-left: 1.2em;
+}
+ol {
+	padding-left: 1.2em;
+}
+blockquote {
+	margin-left: 1em;
+	padding-left: 1em;
+	border-left: 1px solid #ddd;
+}
+code,
+pre {
+	font-family: "Consolas", "Menlo", "Monaco", monospace, serif;
+	font-size: .9em;
+	background: white;
+}
+.md-fences{
+	margin-left: 1em;
+	padding-left: 1em;
+	border: 1px solid #ddd;
+	padding-bottom: 8px;
+	padding-top: 6px;
+	margin-bottom: 1.5em;
+}
+
+a {
+	color: #2484c1;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+a img {
+	border: none;
+}
+h1 a,
+h1 a:hover {
+	color: #333;
+	text-decoration: none;
+}
+hr {
+	color: #ddd;
+	height: 1px;
+	margin: 2em 0;
+	border-top: solid 1px #ddd;
+	border-bottom: none;
+	border-left: 0;
+	border-right: 0;
+}
+.ty-table-edit {
+	background: #ededed;
+    padding-top: 4px;
+}
+table {
+	margin-bottom: 1.333333rem
+}
+table th,
+table td {
+	padding: 8px;
+	line-height: 1.333333rem;
+	vertical-align: top;
+	border-top: 1px solid #ddd
+}
+table th {
+	font-weight: bold
+}
+table thead th {
+	vertical-align: bottom
+}
+table caption+thead tr:first-child th,
+table caption+thead tr:first-child td,
+table colgroup+thead tr:first-child th,
+table colgroup+thead tr:first-child td,
+table thead:first-child tr:first-child th,
+table thead:first-child tr:first-child td {
+	border-top: 0
+}
+table tbody+tbody {
+	border-top: 2px solid #ddd
+}
+
+.task-list{
+	padding:0;
+}
+
+.md-task-list-item {
+	padding-left: 1.6rem;
+}
+
+.md-task-list-item > input:before {
+	content: '\221A';
+	display: inline-block;
+	width: 1.33333333rem;
+  	height: 1.6rem;
+	vertical-align: middle;
+	text-align: center;
+	color: #ddd;
+	background-color: #fefefe;
+}
+
+.md-task-list-item > input:checked:before,
+.md-task-list-item > input[checked]:before{
+	color: inherit;
+}
+.md-tag {
+	color: inherit;
+	font: inherit;
+}
+#write pre.md-meta-block {
+	min-height: 35px;
+	padding: 0.5em 1em;
+}
+#write pre.md-meta-block {
+	white-space: pre;
+	background: #f8f8f8;
+	border: 0px;
+	color: #999;
+	
+	width: 100vw;
+	max-width: calc(100% + 60px);
+	margin-left: -30px;
+	border-left: 30px #f8f8f8 solid;
+	border-right: 30px #f8f8f8 solid;
+
+	margin-bottom: 2em;
+	margin-top: -1.3333333333333rem;
+	padding-top: 26px;
+	padding-bottom: 10px;
+	line-height: 1.8em;
+	font-size: 0.9em;
+	font-size: 0.76em;
+	padding-left: 0;
+}
+.md-img-error.md-image>.md-meta{
+	vertical-align: bottom;
+}
+#write>h5.md-focus:before {
+	top: 2px;
+}
+
+.md-toc {
+	margin-top: 40px;
+}
+
+.md-toc-content {
+	padding-bottom: 20px;
+}
+
+.outline-expander:before {
+	color: inherit;
+	font-size: 14px;
+	top: auto;
+	content: "\f0da";
+	font-family: FontAwesome;
+}
+
+.outline-expander:hover:before,
+.outline-item-open>.outline-item>.outline-expander:before {
+  	content: "\f0d7";
+}
+
+/** source code mode */
+#typora-source {
+	font-family: Courier, monospace;
+    color: #6A6A6A;
+}
+
+.html-for-mac #typora-sidebar {
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+}
+
+.cm-s-typora-default .cm-header, 
+.cm-s-typora-default .cm-property,
+.CodeMirror.cm-s-typora-default div.CodeMirror-cursor {
+	color: #428bca;
+}
+
+.cm-s-typora-default .cm-atom, .cm-s-typora-default .cm-number {
+	color: #777777;
+}
+
+.typora-node .file-list-item-parent-loc, 
+.typora-node .file-list-item-time, 
+.typora-node .file-list-item-summary {
+	font-family: arial, sans-serif;
+}
+
+.md-task-list-item>input {
+    margin-left: -1.3em;
+    margin-top: calc(1rem - 12px);
+}
+
+.md-mathjax-midline {
+	background: #fafafa;
+}
+
+.md-fences .code-tooltip {
+	bottom: -2em !important;
+}
+
+.dropdown-menu .divider {
+	border-color: #e5e5e5;
+}
+
+
+mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+  min-height: 1px;
+  min-width: 1px;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line], svg[data-table] > g > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame], svg[data-table] > g > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed, svg[data-table] > g > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted, svg[data-table] > g > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > g > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+  stroke-width: 3;
+}
+
+g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+.MathJax g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+ :root {--mermaid-font-zoom:1.8em ;} 
+</style><title>(More Than) Crazy Fangirl Trip 2021 Recap</title>
+</head>
+<body class='typora-export os-windows'><div class='typora-export-content'>
+<div id='write'  class=''><h1 id='more-than-crazy-fangirl-trip-2021-recap'><span>(More Than) Crazy Fangirl Trip 2021 Recap</span></h1><p><span>Well, I almost posted daily on Instagram with pics and text while I was in Denmark, but I decided that I still want to write a recap to put all the things together and have the unfeatured ones shared before I&#39;m too lazy to organize all the pictures and memories. The trip of 2021 is just absolutely awesome with more than just concerts and fangirl moments! </span></p><p><strong><em><span>Warning</span></em></strong><span>: it&#39;s a rather long and boring documentation with tiny details that doesn&#39;t matter and my feelings that I can&#39;t describe! Don&#39;t expect the academic reporting logic from me with this! </span></p><p><span>Concert setlist: </span><em><span>Breaking The Rules, Someday, That&#39;s Why, Love Will Never Lie, Judgment Day, Hot To Handle, How Many Hours, You&#39;ll Never Know, Take Off Your Clothes (Naked Like The Moon); (Out Of The Blue) Sleeping Child, One Way Street, Hold On A Minute, 25 Minutes, I Still Carry on, The Actor, Rocking Wild Woman Elise, Paint My Love, Scandinavia</span></em></p><h2 id='denmark-here-we-go-again'><span>Denmark here we go again!</span></h2><p><span>I bought the tickets in August 2020, knowing that I might have just thrown my money away: April 2021, during covid, will that even happen? But if I don&#39;t go fast, the front tickets would be gone! </span></p><p><span>Obviously things were not well in April 2021. Entire Europe is pretty much under restrictions and travelling seemed impossible. The funny thing was, however, according to French labor law, I had 5 leave days that had to be settled by April 30 - I had reserved those days for the concerts! </span></p><p><span>Coincidentally right in the days when the concerts should have been taking place, I received notifications about their postponements to early September. It was lucky that the new dates were still close enough together that I don&#39;t have drop any one. But early September, that&#39;s not a good time. Normally that&#39;s when the huge joint project meeting take place and I&#39;d either be doing the meeting or preparing for it by that time... But who knows which day exactly the meeting is going to take place? I decided to take the chance anyway and didn&#39;t ask for refund.  </span></p><p><span>It was not confirmed until mid-August that the our project meeting is not happening in this particular week of September (thanks to everybody else being busy with legit reasons!). I was literally so happy to know the news that I had to try to contain myself and not to show it in the office. Then Denmark here we go again! </span></p><p><span>The good thing about being on a work contract is that I have a bit more control over my schedule and I can take entire weeks for leave without feeling guilty (and I&#39;m also on a slightly bigger budget than the merely-surviving scholarship...) This time, I wanted to do a bit more than running for concerts, so I took an entire week off for it. The new concert dates helped too: Sunday in Copenhagen, Wednesday in Ringsted, Thursday in Esbjerg, leaving me some perfect time in between to finally explore Denmark a bit more! </span></p><p><span>Apart from that, I also wanted to make it a bit less exhausting, at least no more sleeping at the airport. But hey, turned out no (cheap) flight on Sunday! So somehow instead of sleeping in the airport and flying the earliest flight home, I ended up flying the latest outbound flight to Copenhagen and arriving at midnight. The crazy fangirl trip, especially when on a budget, is always quite sleep deprrazriving! </span></p><p><span>Crazy fangirl trip 2021 is happening!</span></p><h2 id='picking-it-up-in-københavn'><span>Picking it up in København</span></h2><p><span>Copenhagen airport at night, what a familiar scene. I slept there twice! Walking into the quite terminal where all the stores had closed their curtains, all the feelings were coming back. Last time I ended my trip here with a concert in the Royal Theater, came here at midnight to fly home at 6am, not knowing if I could ever come back. Now here I was again, back for the third time, and going to have my 6th MLTR experience in Copenhagen, literally picking up where I had left it last time.</span></p><p><span>On Sunday, I have an entire day to explore Copenhagen before the concert in the evening. And it was sunny! The first (and almost only) time I had a sunny day in Denmark! </span></p><p><span>My first stop is to the all-Danish Politi Museet (Police Museum) because, well, guess who wanted to be a policewoman as a kid. (I went to the Horsens Prison Museum last year, so it also makes sense to see the Police too!) But I first took a stroll in the nearby park. And somehow, it felt like home: the view was really just like the park I used to go with my parents in Beijing. Wow it got me emotional after not being home for two whole years... </span></p><p><img src="https://lh3.googleusercontent.com/iKIY8xE1as6r9idhen6KBI4vreLfeW9T-FX3A9aOa-goSRsevqkeyUVXnScp5JtuHHG32NuyuJElP9xjHsUqjc0aEXhfoUyYMxlS8wsw4iNR41YZ87HRU8m4BO8Nkc5PwmSH9qRXNX0=w2400" referrerpolicy="no-referrer" alt="pic park"><span> </span><em><span>Ørstedsparken</span></em><span> </span></p><p><span>On my way to the museum, I crossed a street and took this pic. One of my favorites of this trip, beautiful Sunday morning in Copenhagen. </span></p><p><img src="https://lh3.googleusercontent.com/F5nTwAl_T-VNXDNIGbtAEda77Lsg92G-tR5cSI6K73C13AVbW4ZvbMrBB7ZqRiF7EiPVOldnM0mHf9B1LwKhFKOpUrIYN0cyj8iIW_uKTo4E29S5rvJUOcR14m-hnhfy58xhA8-_ra4=w2400" referrerpolicy="no-referrer" alt="space-1.jpg"><span>  </span><em><span>sunny Søtorvet</span></em><span> </span></p><p><span>The Politi Museet is entirely in Danish - obviously as it should be. But well, I had Google and I got to learn about the history and evolution of the Danish police service. It&#39;s also fun to read the Danish text and try to understand it: after  all the Duolingo lessons and with my knowledge in the Dutch language, I was actually making quite some sense out of it without the help of Google. It was just so fun. </span></p><p><img src="https://lh3.googleusercontent.com/abU-bg9pue3Nofm8UXyUjaL1K8Zvng129ZQaqh3KDSGfZPAs3OuGsjq2FCG0ZC2HDavlHMBSPth8WvyPjbopcVq1b_UYl_zRF--oxz_vQNya_vhBiDbvAO8LVri66Ayd0H9t9BY6OuA=w2400" referrerpolicy="no-referrer" alt="Faelledvej"><span>  </span><em><span>Fælledvej just outside the Police Museum</span></em></p><p><span>After lunch I set for Nyhavn - the famous tourist place that everybody goes to. And it was a perfect day to go there too. The clear blue sky and the colorful houses make a lovely view. People on the tour boat were calling out &quot;Pikachu!&quot; at me because of my cap and I&#39;d just &quot;PIKA!&quot; back at them. I always feel that Denmark is so similar to the Netherlands. And Nyhavn really reminds me of the Dutch canals and the colorful canal houses along them. </span></p><p><img src="https://lh3.googleusercontent.com/PinE89q5eRoh5XR1vXZT1KEkH3rg9_kg8OQIuM1lFk8d8tLQ5vWWEoVDqqSVXClEIM2tDrBbJqwrJAhi25yFlR0FQkWPOEw0jNu0qTjRCGIoyqIJuTD-xBJAFk7Qu3NRV2dBQRK_qt8=w2400" referrerpolicy="no-referrer" alt="pic Nyhavn"><span>  </span><em><span>all the colors at Nyhavn</span></em></p><p><img src="https://lh3.googleusercontent.com/qQP6efnYivMjil0Dylj3NKO2yTpHy116GG7ITGk1F9ct7YouSOARYxfgKvRtI70eed1Db0FGAyD4khdR0gJivqfLl3P3oEp2vmIsak3nSyxMe-Bg1_heWMakFArPB9wgmIPisKaRrqo=w2400" referrerpolicy="no-referrer" alt="pic Nyhavn"><span>  </span><em><span>life is back on and vibrant as ever</span></em></p><p><img src="https://lh3.googleusercontent.com/06gQURYTK9cTYCxtPcWyXwHhxywn1zX5lbpRcP_ppmLkqJ-8lzohIPt3KQ7dtND0qXFsLl0-QVJ2tsFg6dZ0PZ2HqH1Zw46U2gSpurK3bd7A9_6Mo3KAIwGYG0XZi0PCxRSa2RU0aVQ=w2400" referrerpolicy="no-referrer" alt="Christianshavn"><span> </span><em><span>Christianshavn boat terrace, just like Zwolle!</span></em></p><p><span>As I walked around the city, there was the sudden feeling of familiarity here and there. I&#39;d only walked around Copenhagen briefly before, as I had no time when I had to catch concerts and rush back home. And it was gloomy dark winter then! Kogens Nytorv, that&#39;s actually where I got off the metro for the concert at Kgl last year. I still remember the metro station and the flower shops. But it was winter evening then and everything was dark outside and I basically saw nothing. Now in September sunlight and with greenness all around, it looked so different that I could not relate it with my last trip!</span></p><p><img src="https://lh3.googleusercontent.com/lA3hvQtIprtwtdepEWoDrVwf6y22Tq16wFX5FjHhf2WkDKM0YeqbnfljU4AU5JXG-wZRm_xAsYAp1fTjFQjeEDbTCLsPAiX4Q07Zyg_FTq4r7s_eXFqfhHvu868w5qzpGdC5KAMBwBI=w2400" referrerpolicy="no-referrer" alt="pic Kogens Nytorv"><span>  </span><em><span>Kogens Nytorv in the sun</span></em></p><hr /><p><span>Then it&#39;s concert time! The venue was very close to where I stayed so I could just relax and take my time on my way there. Not long after we got in the venue, however, the alarm went off and we all had to evacuate because of &quot;a critical situation.&quot; Standing outside the venue, I saw an ambulance and a fire truck arriving in front of it. Oh no. I had experienced a &quot;corrupted&quot; concert in Aalborg two years ago where it had to end halfway (and crap it was my first ever Danish MLTR concert!!) I really don&#39;t want any unexpected events now! Luckily, all went well and we were all let in again, a bit behind the schedule but hey, it could have been way worse!</span></p><p><span>It was a beautiful venue. And my heart was just pumping with excitement as I walked in. Remember there is still a pandemic! But here we are, with half of the audience gray-haired, having a full-house concert with no mask requirements! That&#39;s really a privilege. </span></p><p><img src="https://lh3.googleusercontent.com/M90L0ZyE7EKJu0e0PvyxlJjy2SA0knqiDBN3s91f8FcOUEcTLeiBZQQX4cWDVt9buqdDukFMjqbvoCkK0PHQZY4eNUVC8jUGrnCgRJIEe_qCNnXrf55sx5NrM9UnSYONKztVrBLeftU=w2400" referrerpolicy="no-referrer" alt="pic venue DR"><span>  </span><em><span>beautiful DR Koncerthuset</span></em></p><p><span>The lights dimmed and it all got started. </span><strong><span>Breaking The Rules</span></strong><span> gave the concert a powerful start. To be honest, Played On Pepper is not my most-played album. Despite of the big hits and a few song I&#39;d play over and over again, there were also songs that I didn&#39;t really know the full lyrics to...but I did studied before coming so I basically still sing along to all the songs. </span></p><p><span>I was surprised that it would follow exactly the order of the album and </span><strong><span>Someday</span></strong><span> and </span><strong><span>That&#39;s Why</span></strong><span> were put in the beginning of the concert - they normally go in the very end when the spirit is high and everybody can sing. The Copenhagen audience were a bit serious too. The sing-along was more of &quot;proper choir singing&quot; than &quot;wild football chanting&quot; (what I&#39;d always do!). I literally felt awkward when I was yelling out &quot;I won&#39;t forget... THE WAY YOU&#39;RE KISSING!!!!&quot; clearly way off pitch and realizing that everybody else was just singing along normally! But then I was like, heck, nobody knows me, I could never sing on the right pitch, so if I want to yell then yell! </span></p><p><img src="https://lh3.googleusercontent.com/YCLA1g8KFpbGPdMZokvNMyCm9dGo_D-qmD31eH_JFz3Ow1rWB4F62Xkzi_Pq2R5t961XdbA1tAIAVsBGvmstRr_NebrjSfTNg0WgJZjgaZBPIE951jeO-V0MWgb7tFgj7_ipSTpb6gA=w2400" referrerpolicy="no-referrer" alt="Kaare"><span>  </span><em><span>our happy drummer!</span></em></p><p><span>Then it was the &quot;Jascha talks in Danish&quot; part which was always intriguingly fun for me. He would talk way more in Danish than he would do in English on Asian tours. I was so interested that I actually did learn the language and was once at a point where I could understand some of their interviews. But I&#39;ve been ramping up French for survival for the past year which basically corrupted my other languages (Earlier that day I literally answered oui to a girl asking me in Danish if she could sit next to me on the terrace!). I understood a lot less than I did in 2020. But it was still fun to spot the words I recognized and try to piece together the meaning of a whole paragraph. </span></p><p><span>He talked about how there was a war in Yugoslavia when they made the song 30 years ago (and how there is still a war now?) </span><strong><span>How Many Hours</span></strong><span>. It has always been one of the songs that I skip a lot because it&#39;s so heavy and makes me sad. The drums and guitar were so heavy that in the album it was a bit too much for me, but when played live somehow the strong beats fit in really well. </span></p><p><span>Towards the end of the first half, Mikkel and Kåre went backstage, and Jascha stayed on to perform the solo </span><strong><span>Naked Like The Moon</span></strong><span>, like he did it in the 2016 China Tour. That&#39;s the only time I got to hear it live in 2021, as it was not performed in Ringsted, Esbjerg or Vejle, so as </span><strong><span>Out Of The Blue</span></strong><span>, performed as the opener of the second half in Copenhagen but not anymore later. I don&#39;t know why, but I&#39;d definitely would like to hear them again. </span></p><p><img src="https://lh3.googleusercontent.com/CU3zuKivbSHVAFJ6NlILn7xar_0QVomoHiUQwghq3dLfifEm3P9WsVVjWLNnAbw0Z_rFwrNjU3X-W2QcdHJvmClD__rjO1OEV6l6jxBGK8f65ivx20fTOGikHKoUUuPIHzRONvuDsWI=w2400" referrerpolicy="no-referrer" alt="Kaare at drums"><span>  </span><em><span>acoustic! I freaking loooove the shaker. Too bad that we didn&#39;t have the bango this time!</span></em></p><p><span>The second half was the half of the greatest hits, the ones that were played over and over again and never fell old. Following the acoustic Out Of The Blue, there was </span><strong><span>Sleeping Child</span></strong><span>, also acoustic (as it has to be!) It was a nice chorus during Sleeping Child where my yelling didn&#39;t feel too odd because other people also increased their volume. </span></p><p><span>Jascha signaled us to clap along when the beats and guitars started for </span><strong><span>One Way Street</span></strong><span>. That was one of my favorite especially played live and acoustic!! Just couldn&#39;t get enough when Mikkel rocked his acoustic guitar like an electric! The bridge was particularly exciting when we clapped with varied tempos following Jascha&#39;s gestures while exciting notes and beats burst out from Mikkel and Kåre.</span></p><p><img src="https://lh3.googleusercontent.com/2RKqUtbYWMWy7J5sW4yxDD8jcYoa-iAohi1EuIGBhBubUnIrWn-EnQ2F15qnEcBAiREF9BuNCM6FohD4xdsf-bcXPV0WGUZ4u-FHM6vIi9pkCONtDe7cDe5YDp8YFXK1XTFveB_H49g=w2400" referrerpolicy="no-referrer" alt="Mikkel and Troels"><span>  </span><em><span>Mikkel and Troels enjoying themselves!</span></em></p><p><span>Then it was the magical moment with </span><strong><span>The Actor</span></strong><span>. That was a beautiful moment, when we were all singing along, flashing our phone torch like stars, with lots of seniors in the crowd, no masks but no worries. Music is coming back, so is life. </span></p><p><img src="https://lh3.googleusercontent.com/dnhx85e6krt7TqhNrxdZ-taiGh7k1kVrHY4VDTsBlQ-pXzjD93NPOGLZwpsDBCi--8E5fy_rgR0AHqay58U9G-puWJhaCQr5njZ8kSqG_1wvt0aLJVHxo9ryYtQ4hZBoecXKfijXc14=w2400" referrerpolicy="no-referrer" alt="The Actor"><span>  </span><em><span>Watching the stars satisfies my soul...</span></em></p><iframe height="360" src="https://www.youtube.com/embed/8Fw9ZZ2mWCI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe><p><span>As Mikkel and Kåre took a brief (beer) drinking break, Jascha said something like he&#39;s going to get some help from his German great great great great great grandfather? (tip tip tip tip tip oldefar? Is that what he said?) Well the moment I heard &#39;&#39;tysk&#39;&#39; I knew what&#39;s coming! The Rocking </span><strong><span>Wild Woman</span></strong><span> Elise! (well that&#39;s what I call the combo...) That innovative mix was a huuuuge success during the 2017 Asian tour and they had kept it in their programme ever since. We were now a classical-disco house!</span></p><p><span>Since Someday and That&#39;s Why were both played earlier in the first half, I wondered what they&#39;d have for encore. It turned out to be </span><strong><span>Paint My Love</span></strong><span>! Pink lights and rosy lyrics with acoustic settings and everybody singing along, it went exactly the way you&#39;d expect it to go. </span></p><p><span>The concert was concluded with </span><strong><span>Scandinavia</span></strong><span>. I absolutely loved it when the album came out, and it&#39;s just special to hear this song played in Scandinavia! When they were approaching the final line with &quot;you made us wonderful,&quot; I really wanted to yell &quot;YOU MADE ME WONDERFUL TOO&quot; to the stage but never actually did it (it would make me so weird though...) </span></p><p><span>Everything was wonderful that night. Wonderful band, wonderful audience, wonderful that all these were actually happening and I was there to live it. </span></p><p><span>Waving goodbye to the DR Koncerthuset beautifully lit up in blue, I board the metro back, still excited from the past few hours, and looking forward to the upcoming ones. </span></p><p><img src="https://lh3.googleusercontent.com/VdiMDqc8aGWnX46iSzrjms3YM-kEsT17oCoRQAF_3jCs3sxPwcuVwBbyUwC9SydrD7kpWVNFk2oLmeFhYu2LebIcSWkdWqBcJD9M7f7CpDUgHxjtF_OKPQSoDtcdUSHcSGSEvKofVjY=w2400" referrerpolicy="no-referrer" alt="pic BlueDR"></p><hr /><p><span>And then I had almost two whole days free in Copenhagen before I went on to chase concerts. Going to make use of them of course. The famous Tivoli Gardens was dead expensive so it was not on the list this time. (Maybe in next one!) And I went to the Blå Planet Aquarium and a long beach walk on the following day.</span></p><p><span>A funny thing I noticed was that, there were often no ordering machines in McDonalds in Copenhagen? That was awkward because I was reluctant to walk up to the counter and talk to order... But anyways that was one of the very few options where I could get a warm breakfast at a reasonable price early in the morning so I&#39;d put up with that... </span></p><p><span>The Aquarium was cool. There was stuff that you could see in other Aquariums (like the tropic stuff and marine life history) but there was also a dedicated section on the Nordic marine lives and a special section dedicated to sea eels. There were also sea otters and they were so cute!</span></p><p><img src="https://lh3.googleusercontent.com/pGCXyDIi98Z5muKApCNKxDQnGqMIuLACVDt_n7CUmnZadhrZ9sWKsFVM5UvxhReh4m9X0fLVzoFY387DQbB1NaAJSYkjjDO_zjSZYbj5W2BB57SiXFsH7iTzm8SqOWnlDdCF_c2w91k=w2400" referrerpolicy="no-referrer" alt="pic otters"><span>  </span><em><span>who can resist the cuteness of sea otters...</span></em></p><p><img src="https://lh3.googleusercontent.com/LXcBppJOz_CURFlgch-w6uRWDx98d6bXBc45wRlDyHY_x2jgYhJCz2Bg19cRHjqiyFB0HC9NmeuqllBSufzUN4f0qWUXkbAgnISbTX1qB_Wy7dqLWyZl0CeEsJfh_lgpiqTKyKc4mM0=w2400" referrerpolicy="no-referrer" alt="aqua"><span>  </span><em><span>in the greenhouse of the Aquarium</span></em></p><p><span>And of course there would be a long beach walk when I came close enough to the sea. And the beach walk was even better when there was an airport nearby. Perfect plane spotting setting with the Øresund bridge in sight. </span></p><p><img src="https://lh3.googleusercontent.com/exIGeNkg6HGaFmjfL0yY_YwhhJnVHd7y-MVx2TE6D8RApiLh4hC3eozOX3E5CnEPAk0wIE0o_73Y9z1lhZiH1193bNUYYuyUbn9EZ7oVRO4Mh6I8pbZUwaMPE1rvwpIqYPUeovsrhy4=w2400" referrerpolicy="no-referrer" alt="pic plane"><span>  </span><em><span>plane spotting</span></em></p><p><img src="https://lh3.googleusercontent.com/WtSFnedEkma-JjFmQvsIZaqSIuyAdFwzNRcIQrx4wJ4Ow1_ze61BKb0K8Lo-MO9dBcTGGlHcbwEcGoQzODjgNPBua6kihNqLBB8A69kadvcYBWGo6tVG4hircARGS9NDkX2Fh2-3_oA=w2400" referrerpolicy="no-referrer" alt="pic beach"><span>  </span><em><span>Amager Strand &quot;Sneglen&quot;. There was a guy diving from that platform...into freezing cold water</span></em></p><p><span>Another funny thing is that Denmark is really a small country with giant humans. Everybody is just so tall. As I walked into the restroom of the Trampoline Gym, I noticed that (again) I could not see myself in the mirror - it was hung way high up out of reach! Just like how it would go in the Netherlands. But back then there were usually tiles on the wall that gave a rough reflection, here, no mirror, no tiles, want to see yourself? Jump! It&#39;s a trampoline gym! </span></p><p><img src="https://lh3.googleusercontent.com/kOG9fOUvcWA_CXGiT3cxwW5YF3Lzg_ATlSKz7OIb0-Kbf7U574HkY2OJNvQOSnCMYrd-ZO14RRkD-1C_gl1w2yuT14-lYm5cxx4Kyw3QQy0xoTPQ24mBzkyN3aPaTG0oCHI1nFp6hGM=w2400" referrerpolicy="no-referrer" alt="pic mirror"><span>  </span><em><span>mirror? nope.</span></em></p><p><span>I also went to see Frihed Museet (Freedom Museum of Danish Resistance) and spent a long time looking at every piece and every story. I&#39;m always intrigued by that part of the history. Growing up I was taught about how our seniors fought to the last man and how we should never give up on every inch of land. I used to feel that the only right way is to fight from the first moment till the last (and I guess it&#39;s also very dominant with English speaking narratives.) Of course that&#39;s how it should and would work for bigger powers. Later I learnt about the perspective of smaller countries and their stories are equally intriguing, way much more than &quot;surrendering&quot; as depicted in the dominant narratives. I was equally fascinated by how the Soldaten van Oranje operated in Contact Holland, how the Holge Danske carried out sabotages around the country, how the Dutch survived (and perished in) the Hongerwinter and how the Danes somehow stayed rather afloat all the way through... Humanity shines through the darkness in one way or another. There is the choice of the government, the choice of the people, the choice of individuals. In the end, despite all the different approaches, life, freedom and peace is really what we all die for. </span></p><p><img src="https://lh3.googleusercontent.com/Nu-XqirxCqqVzaAjlr6dDwzlFbSihVnuvQhO-jy2V1VUIkI-MS9C4MTXH8Gp6i5xuHUosmgKYDhorQhQNp6JAjhDuG1AMzFZBVgeeiMsyDYEss_kiaJDht1cGUfjM4HtpTx8cJYQtKo=w2400" referrerpolicy="no-referrer" alt="pic map"><span>  </span><em><span>map of the airdrops and sabotages during one period of the Danish Resistance. Funny that they used a contemporary base map instead of a historic one... there you can see the Dutch Flevoland which didn&#39;t exist back in WW2 days.</span></em></p><h2 id='no-picture-in-ringsted'><span>No picture in Ringsted</span></h2><p><span>When the cartographer-in-training read the map wrong... That&#39;s what happened on my way to the venue in Ringsted! Luckily I had enough time buffer to take a detour and not be late, and to actually see a bit more of this tiny yet busy transit city in the middle of Zealand. (And when in a transit city, you take a look of the trains just parked at the station!)</span></p><p><img src="https://lh3.googleusercontent.com/7C7z_b_Mzi9V3MPCPRHj-MGAbMejbdFUoIQ73Tvl_BbkFp0geePZUEx0IG3A1TaWTdt3_Yh1BpJLxMAh3jUB0S7NKlBg9-T-96__9dYHb4GKQrkDUjtwQAwZzcOLL6FaxZKN7H29Trs=w2400" referrerpolicy="no-referrer" alt="pic trains"><span>  </span><em><span>train nerd in Ringsted</span></em></p><p><span>I got to sit right in the center in Ringsted. But as the staff were very strict with enforcing the no-picture rule, I didn&#39;t got much chance or luck to click or film. Nonetheless, I got a perfect view right in the center and of course I fully enjoyed it!</span></p><p><strong><span>Judgement Day</span></strong><span> and </span><strong><span>Hot To Handle</span></strong><span>, the songs that pushed the tempo high! The lights flickered to the beats and it made want to daaance! Somehow I felt it sounded differently than the album with Hot To Handle. The guitar became stronger and that was very engaging. That&#39;s the magic of live concerts I guess, a chance to re-discover the songs like never before!</span></p><p><span>I remember hearing </span><strong><span>You Never Know</span></strong><span> for the first time in Aalborg in 2019 (the concert that got corrupt!) and suddenly got obsessed with the beats. The nice thing about the concert is the the drums are so much clearer and that goes straight into your heart (in a literal sense!) Of course the fun part was when Jascha directed us to do the &quot;oh---&quot; singing towards the end of the song. He had not been doing super high notes in his songs for a while, but he&#39;d get out a few super sharp &quot;ah--&quot; as we all had fun together. A video from Copenhagen where we played the little game.</span></p><iframe width="560" height="315" src="https://www.youtube.com/embed/WeV9rVbKbgA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe><p><span>It seems that </span><strong><span>Hold On A Minute</span></strong><span> would be </span><em><span>the</span></em><span> song from the album STILL that  will get a permanent place in their setlists, even though I secretly want to hear Unconcerned more! But I see the reason for it, the tempo and dynamic is perfect for a vibrant live concert! </span></p><p><strong><span>I Still Carry On</span></strong><span>! The crowd absolutely loved it. I actually never really got to appreciate it that much before I&#39;d experienced it in Denmark! A wave of cheers would burst out right at the first few notes, followed by continuous claps all the way till the end. And in the front you&#39;d see many of us doing the little &quot;climbing up the mountain&quot; dance to the lyrics. The happiness was just in the air. </span></p><p><span>Nonetheless, guilty as I was, I did still managed to smuggle a few clicks under the constant rigorous surveillance of the venue staff... I was so tempted to do so from a premium view point! </span></p><p><img src="https://lh3.googleusercontent.com/OISWxr3irTV_77Ogax-SEvVrV3kQv_knM4vNBK87ueSyuJHOjdoLdugO2yB2SJwDFqtggA0rNusJbA29FPIiTaeCT69dD-pg5hFiECB0oHgda3JSImFFemRxomv0sD7VMGcbjDLwiYg=w2400" referrerpolicy="no-referrer" alt="pic Ringsted"><span>  </span></p><p><img src="https://lh3.googleusercontent.com/ui3_dxxS0EAYA5NBeVqCAnrzBldK7x03SEnj-d4lHRiWEJZN88XxyxGMHOm_qICfgO5SOgXJqKVMemHoRj2G-BzLLynI1cJTnWWcIotXsoT8IDqTJ5wxKfmHAZBR15273OP6KJNQc8U=w2400" referrerpolicy="no-referrer" alt="pic jascha"><span>  </span><em><span>center view</span></em></p><p><img src="https://lh3.googleusercontent.com/8SVrlxh1RXCawret476Jyys7wBp8sGfcRvIvqIA4QwqWDravbIjUJKqVKLFvaMe_RLfFJmpnRP00yll2x1dWNLlwA_3jEEAkIc3yuKUnBSWPMJhqlud-Eb_O0oesTC-KLGzVaoqA7hg=w2400" referrerpolicy="no-referrer" alt="mikkel"><span>  </span><em><span>guitar hero!</span></em></p><p><img src="https://lh3.googleusercontent.com/aV1q8oGaqJc8CwAHCuLsCoS5FopSoufvIMUXUA4GTKpdWxUqIeuTrk0iQRRi4q4eluB2Tbi4XPN3MccMGrSRBElmSUYhypIai20NXIgcfEWrjjwetEuSZpMxWyk3oGrAvuUe9gz-OVk=w2400" referrerpolicy="no-referrer" alt="kaare"></p><p><img src="https://lh3.googleusercontent.com/8hpq0ErnsVxEE5zeZ2FYYYuzCqdnsQm33nN-cPDaPyIOAiROehN3BUpN_jN0gapCas8sF2PTj9ocVn0YYjU47HSKaBDP-S2Lnjn5JncbZ2TZSTTWsYDi0jSwpSBjXNj7VgjWYGTm1tM=w2400" referrerpolicy="no-referrer" alt="Kaare"><span>  </span><em><span>happy Kåre!</span></em></p><h2 id='meeting-up-in-esbjerg'><span>Meeting up in Esbjerg</span></h2><p><span>Esbjerg was the place to meet up! I met up with Flora and Melody, the Philippines-Danes that I got to know from social media. I met up with the band! I talked to a guy from Germany and found out that we are UTwente alumni studied in Enschede some 15 years apart, and I also met a Japanese researcher microbiologist. How cool is that!</span></p><p><span>I walked to the venue from an unpaved road through a park, and I saw the parking lot of the venue. Yep this is it, I&#39;d get to try my luck today!</span></p><p><img src="https://lh3.googleusercontent.com/X3U8NwNoQaBxzMdG-e7d7UKWAY1usIMQxhvb6im2QvhVBcsJHpycTTP_EcGEviHilmK1KgI21EJOKK_hWeKKgUclX985cD-i8EINOz-IdgFiArsAgTrQS9QmBOCxWWa5FwRNHEXCjFs=w2400" referrerpolicy="no-referrer" alt="Esbjerg"><span>   </span><em><span>Esbjerg center Torvegade</span></em><span> </span></p><p><span>As I was just wandering around in the hall, Flora came straight up to me. That&#39;s so cool to have a name on the internet becoming a lovely person in real life! It was lovely to talk with her about our previous concert experience and how the band brought people together like this. Thanks for the hospitality Flora! </span></p><p><span>In Esbjerg I had another concert with a super close up view in the second row. With a few more Asian girls sitting behind me that can scream and sing, my off-pitch yelling is not awkward anymore </span>🤣<span> ​ </span></p><p><img src="https://lh3.googleusercontent.com/lqgLJ1RyK3JecapyfWmRAtiEjnbZyReaQLJAq4ejelkG2eBogekuybKzkmlVqHb5vZ5HP142Sm0_S2TgcBeP8FG0LWE5Pb-65C9Ae-i3zx0IdvPscTIZxFtemrhNAUnC0OfXX1mDs1A=w2400" referrerpolicy="no-referrer" alt="pic jascha"><span>  </span><em><span>my fav part of Jascha speaks in Danish</span></em></p><p><img src="https://lh3.googleusercontent.com/tT0CJeUYLuzUbExTYWbVkS1svwcCb5haDtrE9DoDNp7fFdOAuikPGi-KGXlmwXnTO_wh_14P3nMj6WW775Vxq6sL4H-BK2jIrE01C_7kIGEwsci8yeCUN7Q7B66RJ4k8PWEo24KNMeY=w2400" referrerpolicy="no-referrer" alt="pic mikkel"><span>  </span><em><span>rocking that acoustic guitar again</span></em><span> </span></p><p><img src="https://lh3.googleusercontent.com/2LS0nOZXyg9d8stkEIXvpkeh720-Ii5ULc7RPWxrF0RfE2h4iNbMKEopb7BPFOPENFAGajyW5hUZ21O-BB-Sq1Tykz7KJIROMdLcZTy2MMZ7Z1h15NNDz5PynnzI45Er2dWUGlAX9cg=w2400" referrerpolicy="no-referrer" alt="pic Kare"><span>  </span><em><span>immersed and focused</span></em><span> </span></p><p><span>I got a super view of Mikkel as I sat right in front of him and I got to see how he played so clearly. I have zero musical talent and never played the guitar, and it&#39;s just fascinating to see his fingers fly through the neck of the guitar, I just loved to watch how he &quot;rode&quot; the guitar and rocked it, how he came to the microphone for a chorus, and how he turned the microphone to us with a big smile when we had to pick up Jascha&#39;s singing! </span></p><p><img src="https://lh3.googleusercontent.com/dum9RhVDqTYnJyxLQUDLiqzqfWXilcsXPGRBymD8CIzLsYwuTciYa2rW7LtAFLv8YnwWOqYKpqEjf8nsMMXpY3NY4UWeKqjH4ZSz6pQLdh2Ecoai6cppIpHi89jFBHm3P8RGBZU3f0g=w2400" referrerpolicy="no-referrer" alt="pic Mikkel"><span>  </span><em><span>roooock!</span></em></p><p><span>The interlude and outro of </span><strong><span>25 Minutes</span></strong><span>! That was so cool. It went from quite to burning to quite again. And the band on the stage obviously enjoyed that transition also. They were having so much fun!</span></p><iframe height="360" src="https://www.youtube.com/embed/-fXPfcsdN2c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe> <p><span>The casual atmosphere was the best. The equipment staff could just came on stage to hand over the guitars without having to dim the lights, and of course Mikkel would be drinking (beer) as Jascha talked, and Kåre would take down half a bottle of water within seconds. Those are the little cozy things that I won&#39;t see if they tour Asia. (Beer-drinking on stage would never happen if they perform in China!) </span></p><p><img src="https://lh3.googleusercontent.com/_eFb0bYQUY7KzixnUszlhLbT6euaBc_EQPABbRSntGqe6PtQ8Q2iiLeUpJ6xEY9V0qEWQANe_y-p4zkstT0BCsPwkm4lf5JB8S0SkTTUa1DX1tQvb-Oj29iC0Qo_YvIaFAQOmzEdT80=w2400" referrerpolicy="no-referrer" alt="pic mikkel drinking"><span>  </span><em><span>I was trying to catch a drinking pic but never quite got it!</span></em></p><p><span>This time when introducing the Elise/</span><strong><span>Wild Woman</span></strong><span> song, Jascha said something on the line of &quot;this is our last song for tonight&quot; and a huge &quot;NEJ!!!&quot; burst out behind me. We were all clapping along and rocking around, doing the &quot;back-front-winner-sinner&quot; dance, and the band was enjoying it too, Jascha was also rocking (dancing?) around as he played, even turning around and playing with his hand at his back. </span></p><p><img src="https://lh3.googleusercontent.com/FVXTj0C5qPTb_9tkIoT74A_FqHVB0H1OS_t8wYh-iPuAL6zbCj6Q8deGj_-PDllQkD-LjRsk5luPKVVoM0c_cWC7jz11tdXwnX5-8XXZTLj5K3KQaixebbunxmxaWo-qQOZOqdnhjCI=w2400" referrerpolicy="no-referrer" alt="pic waving mikkel"></p><p><img src="https://lh3.googleusercontent.com/d0bFDpkl54dPSrdzmYPg-2XSWFHO3r0GHlX-pbccVn3GJTmB4IO6jxOSikbHDKQQQUsx4pjKoAx3E0BgH6YJ9d9vLcH_Gpw6TY-_lhusrQtreETtrFlCX8RL3ZEDLB_rfBqgRRw5JYU=w2400" referrerpolicy="no-referrer" alt="pic Kaare"><span>  </span><em><span>tak for aftenen!</span></em></p><p><span>After the band waved goodbye to us, the particularly &quot;fun&quot; part for me started: &quot;staking out&quot; at the back door carpark to try to get to meet the band. There were also two other guys who had been sitting in front of me in the first row. They drove all the way from Germany! It later turned out that the German guy and I were alumni! Who could see this happening, a Chinese and a German met up in a small town in Denmark and found out that we both had studied in same university in the Netherlands! What a big and small world brought together by music.</span></p><p><span>&quot;Heyyyy Markie!! It&#39;s so nice to see you in back the audience again!&quot; As we were guided into the backstage area, Mikkel came over with a big smile and we shook hands (remembering how we were not supposed to shake hands since the pandemic...) That&#39;s the moment when I knew the travels and hustles were all worth it. And the good thing is that my mind was not blank this time. I was just relaxed, enjoying every moment. </span></p><p><span>&quot;This is my eighth concert in Denmark!&quot; I told them, that was a proud recording that hopefully will still grow!</span></p><p><span>The other guys took out a copy of the Played On Pepper album and the band all signed them. Imagine being a fan since almost 30 years ago and still on the ship now! &quot;Yeah we played it today </span>😉<span>&quot; said Jascha with his joking tone. </span></p><p><span>Mikkel asked me if my hometown was in Shanghai - we met there in August 2017 and there an unforgettable (and awkward) picture was taken. Nope, but that trip to Shanghai was the first time that I travelled particularly for concerts - in a way that was the very beginning of my crazy fangirl trips! </span></p><p><span>&quot;How is Paris?&quot; he asked me. &quot;It&#39;s nice when it&#39;s not lockdown!&quot; </span></p><p><span>We naturally turned to talk about if we had taken the vaccines, and how someone felt completely fine after the vaccine and someone else got flattened, how was the covid measures elsewhere in Europe, and so on. Those were some nice little casual chatters that you could have with a friend. </span></p><p><span>&quot;You are going back tomorrow?&quot; he asked me assuming this would be my last one on the trip. Yes that&#39;s what I wrote on Instagram the day before after the Ringsted concert. But not true anymore since I had just decided to go for another one in Vejle! They were all laughing when I told them about my spontaneous decision but hey four in a row would be fabulous! </span></p><p><span>The German guys took a pic with the band, then I asked them if they could help me with a picture too.</span></p><p><span>&quot;Of course!&quot; said Mikkel and Kåre with a smile. (I actually printed a phone-case with a picture of Kåre I took at the 2019 concert just because I thought it was a fab picture. I&#39;m glad that I didn&#39;t have it on that day, otherwise it would have been very awkward at the photo!)</span></p><p><img src="https://lh3.googleusercontent.com/VHc_LGtyBTbuBiKfRL-Ywf18F-61tHgW0jpckiyUir0HvN85sUnLN9DlIb1HP8gCbXSnN5qjfiQu-LtmqIUGg-EyJeZC-9lHELKSlh3KCM9yFUcxIEKk_wSmUi2gOy9Cj38jGTBs4sw=w2400" referrerpolicy="no-referrer" alt="pic with band"><span>  </span><em><span>the moment when it&#39;s all worth it!</span></em></p><p><span>Only when I saw the picture did I realize that I was smiling so much. I actually don&#39;t smile much in my &quot;normal&quot; daily life. I almost always have a straight serious (frown) face to the point that my supervisor was once concerned about my wellbeing... That&#39;s the smile of carefree pure fun!</span></p><p><span>On our way back, the Japanese guy asked me when did I became a fan and I said around 2010. He was surprised because the band was doing big promotions in Japan and other Asian countries around 1995, and were relatively silent later in the 2000s. Well I was not born yet in 1995 to start with... For me it all started with something on TV, a clip or a show of their performance. That&#39;s the magic of music, just one clip on TV and you are completely on the ship for years to come! </span></p><h2 id='going-wild-in-vejle'><span>Going wild in Vejle</span></h2><p><span>It was really a spontaneous decision to go to have another concert in Vejle. I didn&#39;t have it on the plan to begin with. It was not decided until the morning of the previous day. I was sitting my room before check-out, and thinking, hey, I&#39;d spend two nights at Esbjerg...the second night would be sad without concerts. Where is Vejle then? ...Just 1.5 hours of train! That&#39;s not too far!  And then I checked the ticket sale, there were not front middle seats anymore, only some front seat wayyy to the side and middle seats in the back. I contemplated for a minute if I should go and have a concert probably without a good view. Well I decided to go anyhow, I had 3 with a good view already, and just one more would be nice regardless of where I&#39;d sit! Then concert and train tickets were purchased within 10 minutes and it was decided that onto Vejle I go! </span></p><p><span>I stayed at Esbjerg for one more day as I&#39;d travel up and down to Vejle for the concert. The day was all about walking, through the city center all the way to the beach, following the &quot;historic route&quot; along the beach and all the way back again, some 20km in distance. I just had to move around! And of course when you are on the beach you play the music in your buds and siiiiing along as nobody else is around!</span></p><p><span>Rushing to the train station after a long walk, after 1.5h train ride then it&#39;s time for the last dose of hype in Vejle! I had some time to walk around the city center a bit too. This is the 8th Danish city that I&#39;ve been to! </span></p><p><img src="https://lh3.googleusercontent.com/a-2HISkZehTwfqZxcV1VPTusgRwFQwLH8gK9vjQCYUTuWFKVND1XFgBggrQD8FrVwIek6qK0LaIDATdK_1M4FvxUs0vYGAKWjnJIuXfY6JexyqsOHJFb7vMQGu4s6QQV9kEwHbZWDaE=w2400" referrerpolicy="no-referrer" alt="pic Vejle"><span>  </span><em><span>Vejle fjord</span></em><span> </span></p><p><span>And holy heck what a decision! The Vejle concert was the best of my trip! </span></p><p><span>It turned out that the side seat was actually a very good one! For the previous concerts, I was either in the middle or to the left side, and because of distance and the lighting/fogging, I never really get to see or film Kåre clearly. This time, I was sitting way to the right wing, but very close to Kåre&#39;s drum sets. I&#39;ve got a view! </span></p><p><span>The same group of Asian-Danes were sitting in front of me today. We were having a little Asian corner here and you&#39;d know we could screeeam! This seat was awesome in the sense that I could feel the floor vibrate to the beat of Kåre&#39;&#39;s bass drum. </span></p><p><span>Before </span><strong><span>That&#39;s Why</span></strong><span>, Jascha said something like &quot;we are playing the album Played On Pepper from 1995, and we&#39;re going to play a very great (flotte?) song. Who can tell what&#39;s coming now?!&quot; And received silence and then laughter. But then as the first notes came out, it was received with a huge scream coming from our Asian corner! </span></p><p><img src="https://lh3.googleusercontent.com/FzB7g2WL0LssL1rmNsRlwy8-Ppl-RfDsJfq7hAyNQ4XCWnbDwI22j24sicrNdm243OOHY15CGD6gmYjlV7Jzcf_yk6CvimD4MZPvu4HdKzWRe9Sla7u7wxo663HMpsBkySlF0fYqcro=w2400" referrerpolicy="no-referrer" alt="pic mikkel jascha"><span>  </span><em><span>oh my sleeping child...</span></em></p><p><span>At the last concert, I finally got (partially) what Jascha said to introduce </span><strong><span>Take Off Your Clothes</span></strong><span>, something in the line of they made the song back in 1988 in Aarhus at the very beginning of the band and it finally made its way into their third album. I didn&#39;t know that before! He then joked something like that&#39;s how it was in Aarhus in the 80s (to take off your clothes) and it&#39;s a play of text? Don&#39;t quite get it but anyways that was received with more laughter. </span></p><p><span>The beats to this song were slightly different. Kåre used a different drum stick to make a thunder-like sound. I&#39;ve seen him using that in one of their studio videos before but not in live. And it was fantastic.</span></p><iframe width="560" height="315" src="https://www.youtube.com/embed/UzSK3Tu4a-g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe><p><span>And as I had a better view of Kåre, I did take a good look! I&#39;d never seen his drum set from this angle either. I could also see how he played in quite good detail. My best mate learnt to play drums a few years ago and she&#39;d tell me how hard it is to coordinate your hands and feet fast but how happy it feels at the same time - I could clearly see that in Kåre! He&#39;s so fast, non-stop, so sharp on everything. He was smiling, squinting, swing around, completely immersed in his own world absolutely enjoying himself.</span></p><p><img src="https://lh3.googleusercontent.com/FFGEQxcUK03fZqd8X2lSdAj9N2rfPstAz3RyuOX7_FFUmYnDOSrw_byKREp9C1q8YPiP13QWdYA8Je_VthxvXQsyp4uqcZoMzbtPBOqGGtEE-A93PCkeuMHe3A6SS9mwJhKqIzGRDBU=w2400" referrerpolicy="no-referrer" alt="pics Kåre"></p><p><img src="https://lh3.googleusercontent.com/xvrrpycIqcgns5SBngUFIiWGIaV5Yd3m-xTg-CCHUO10ioYd9XYeqW4-j7NQnnEQ1Wnnpb2Kx-zabkUc44dxvHdh-MBUxnNYtESbjbZS9jeS4JEAd3sLONfscjlN-hwzZ5nN1DIv-nA=w2400" referrerpolicy="no-referrer" alt="pics Kåre"><span> </span></p><p><img src="https://lh3.googleusercontent.com/ztPzJCyyhze8BCcxPhLPXBsq59rtQa1shnM0rv43zn44NUwE45DDbsxQDNzLMQ3g8pcSiH7XC9rPXNTYujwmIzcWJqmWt_T7haMX1r2vqHsTAcTV1rzMAiHfMaPzgM3IN6eYEAeOIuw=w2400" referrerpolicy="no-referrer" alt="pics Kåre"></p><p><img src="https://lh3.googleusercontent.com/OowpVeYpiOxbnudCQ4WUi-7ffo2y2Q-AS8bfQJLDGPsheBiiI3POXqtjAJzKHYgk83G4lJ2eCsLTc3Mep_v2wyNqjWhtorm7dVe1EbmVuzgya2MGQEN7wBTTk_1--oHE2x9B4MvY9L0=w2400" referrerpolicy="no-referrer" alt="pics Kåre"><span>  </span><em><span>you see stars in his eye you know...</span></em></p><p><span>During the break, I got to sneak up and take a peek of the screen of Kåre&#39;s laptop. I&#39;ve always been curious of what was on it. Turned out to be a playlist of their songs and timing cues. How would he use it during concerts? No idea. </span></p><p><img src="https://lh3.googleusercontent.com/m7_TBFV9oW4PgTGg0jEqzqPfhkGlTStphBxV0SABU_fI-isVBrYgPZmNnjqEHW5qqUdMpjTw2fQ9erxJ66qYwmy9bRZS-S4Jzf22l2ZEUF5F1vHxeqZMUSpB09YRUmlqoAYHdiEleSA=w2400" referrerpolicy="no-referrer" alt="pic screen"><span>  </span><em><span>so this is it!</span></em></p><p><span>Jascha introduced </span><strong><span>25 Minutes</span></strong><span> as a song that meant a lot for their career. Definitely true when you hear all the people singing along! </span></p><p><img src="https://lh3.googleusercontent.com/s3A7Y0yKlM5SR5CeG4CJSRqIg9uWHnSmRpY8-R9QdEInbWBdSBxa7nOcGvUiixQb4Ema6HeAeCzcAKiifNGG9464SLMWUk5-8_yg2SqcSzNE7diRt7YaRgMiDTXAaDE8roaci-TpOcQ=w2400" referrerpolicy="no-referrer" alt="pic carry on"><span>  </span><em><span>from I Still Carry On, I think...</span></em><span> </span></p><p><span>As there was nobody sitting to my right side, I&#39;d been shifting around a lot already during the first half to have clicks. The second half, the movement got bigger. And as there was also nobody sitting right behind me, along a few others, during </span><strong><span>The Actor</span></strong><span>, I stood up and started swing around and waving. The dancing was then in full swing. Well, that probably was more &quot;jumping&quot; than dancing. I was literally just jumping around up and down and singing to the music. I just couldn&#39;t contain it. I was just so happy. </span></p><p><span>When Jascha said something like, we are performing at a cultural place so we&#39;d play some classical music to have some culture. And you&#39;d know what&#39;s coming! The beats and guitar got the entire audience on its feet. It&#39;s now a freaking disco hall! (Honestly, I have never been to a night club, but I guess I&#39;ve experienced the exhilaration that night in Vejle!)</span></p><iframe width="560" height="315" src="https://www.youtube.com/embed/BfpFS9sig48" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe><p><span>We were on our feet all the way to the end of the concert. </span><strong><span>Paint My Love</span></strong><span> of course was again received with a wave of screams from our Asian corner. With </span><strong><span>Scandinavia</span></strong><span> wrapping up the tour and the audience dancing and singing along, it was an absolutely epic night with the top atmosphere. </span></p><p><img src="https://lh3.googleusercontent.com/SNzevbK0G2HS6nipWshfvmHpf9do-XTPGNYv4c9bwKxKUJOHdSxRJRsWWb81Nd8UlsfCbXz4ojoG7b7TR3JiEmkFVb4_jEIipKCie9YCUJsWnLGXp4MD6Ac1Xax3e7cIQjTsDM23TMs=w2400" referrerpolicy="no-referrer" alt="pic Kåre waves"></p><p><img src="https://lh3.googleusercontent.com/v4T6mvYa7-_b9hrnqf_k3XL_VLz6i8wEPBRoCGtToHfwQdtSO_tUm5bTapnkJTW22WCMzdKqIZmDrhvxGY6No50OQVbOEYu4E5UgRup0ApKxfGbn5Q0eXhnZA6vfRPtbORpT4nUpKlE=w2400" referrerpolicy="no-referrer" alt="pic waves"></p><p><img src="https://lh3.googleusercontent.com/tlnIOpnqDqyuN3vCa1ygccut42xfFc2aWR0AusPYp4Ll5jg7KcQr9ezYISN72AVcvuany3gqo9USKkVgX9GnKM_Hr5Rejg1rES9lqiaA7qZRu_Uh6bSleRzpxlSYZ6I5bLDkhMyHDuw=w2400" referrerpolicy="no-referrer" alt="pic waves"></p><p><img src="https://lh3.googleusercontent.com/4Q78Rzm_byrbgjhpGdm6EC47M6cQ783KfnRcsG7es_WhduFClM4yB_T8qjSBdy5GOI6-xz8XH7DjcBAVExhGcwAlPI1SyDj-n0AAQWePxbWR6_HJqd8vOVPX6GWW9GjEpngdVRUMSkU=w2400" referrerpolicy="no-referrer" alt="pic wrap"><span>  </span><em><span>and that&#39;s a wrap!</span></em></p><p><span>On my way back, I had to transfer trains at Fredericia station. There I had a hectic run to catch my train in 2019, after a beautiful concert and a lucky meetup. This time, with my train delayed, I could actually got a better look of this beautiful station at night. Maybe I will come back again sometime!</span></p><p><img src="https://lh3.googleusercontent.com/aeHZEle8P12tDPr0RIdW7A4qSoAGrRCrNorabW5vLKq0kQHMDvc6H8QQF4GBb8b378qBeFD7UaMBEVxnNvcRzB7bppRuqVyWG2hQk0_ODCA1z19uIdarGt0OBNIJC9Jc0OSvxhRovIA=w2400" referrerpolicy="no-referrer" alt="pic Fredericia station"><span>  </span><em><span>the place with beautiful memories</span></em></p><p><span>There could be some good feeling in leaving when you know you probably will still come back. </span></p><hr /><hr /><p><span>And that&#39;s a wrap for my crazy fangirl trip 2021. </span></p><p><span>I was lucky in so many ways to able to go to those concerts. And that in itself is a huge privilege. I&#39;m grateful for everything that made this happen. </span></p><p><span>The counter now stands at 3 trips, 8 Danish cities, and 9 MLTR concerts in Denmark (12 in total, counting the ones I had back in China!) The milestone of 10 Danish concerts is approaching! While I was strolling in Copenhagen, I came across and bought a full set of Danish traffic maps, because well, I can&#39;t resist anything maps. And on that map book, there are more detailed city maps of 16 Danish cities, I suppose they are the &quot;major&quot; ones. And holy heck, I&#39;ve been to 7 cities on that list now and one day I want to complete the list of 16! When I set off for my first ever crazy fangirl trip in February 2019, I&#39;d never thought that I&#39;d end up having 3 trips in 3 years, and visiting tiny towns like Horsens and Vejle that an average tourist would not get to explore. I&#39;d thought the Danish concert is something I&#39;d experience and cross off my bucket list. But guess what, I&#39;ve got absolutely addicted to it. </span></p><p><span>And of course life is more than concerts and I return to my normal life as a cartographer: I&#39;m also pursuing other (serious and professional) passions in life too. The magic thing about the concerts, however, is that they fuel me and make me more motivated and optimistic about life in general. They bring out a smiling yelling and dancing expressive person out of the serious and rigorous daily me. Now I&#39;m mentally fueled and ready to tackle, also hungry for more to come. </span></p><p><span>Something I&#39;ve written in previous concerts recaps four years ago, is still very much true for me now:</span></p><blockquote><p><span>There’s nothing that makes me feel more secured than something that has been there ever since I was born. And to be honest, there are not too many of them.</span></p><p><span>There’s nobody that touches me more than those who pursue their own values regardless of the circumstances, those who stay true to themselves and melt the years away. There aren’t too many of them, either. </span></p><p><span>They’ve given me the stability that I always crave for, the peace and calmness, the sense of security. It becomes the strength, the strength that I might arm myself with as I face this world of changes. </span></p></blockquote><p><span>And I am indeed a stronger person now, a proper adult living on my own means far far away from home, facing all the changes and even riding the waves. But the most beautiful thing after you have walked so far is that when you look around, even at the other side of the world, those people are still there. And I&#39;m thankful for that. </span></p><h3 id='--you-made-us-wonderful--'>🎵<span>  You made us wonderful.  </span>🌟</h3><p>&nbsp;</p></div></div>
+</body>
+</html>
